@@ -1,0 +1,36 @@
+.stat {
+  padding: 18px 20px;
+}
+
+.stat__label {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.stat__value {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 6px 0 4px;
+}
+
+.stat__note {
+  font-size: 13px;
+  color: var(--success);
+}
+
+/* Tablet and mobile */
+@media (max-width: 1023px) {
+  .stat {
+    padding: 14px;
+  }
+
+  .stat__value {
+    font-size: 22px;
+  }
+
+  .stat__label,
+  .stat__note {
+    font-size: 12px;
+  }
+}

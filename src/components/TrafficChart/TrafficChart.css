@@ -1,0 +1,10 @@
+.traffic__chart {
+  position: relative;
+  height: 260px;
+}
+
+@media (max-width: 1023px) {
+  .traffic__chart {
+    height: 220px;
+  }
+}
