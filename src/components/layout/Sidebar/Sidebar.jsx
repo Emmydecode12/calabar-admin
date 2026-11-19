@@ -8,7 +8,10 @@ import {
   MessageSquare,
   Wallet,
   TrendingUp,
+   LogOut,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
 
 const navItems = [
   { label: "Overview", icon: LayoutDashboard },
@@ -21,6 +24,14 @@ const navItems = [
 ];
 
 export default function Sidebar({ isOpen, onClose }) {
+  const { logout } = useAuth();
+const navigate = useNavigate();
+
+const handleLogout = () => {
+  onClose?.();
+  logout();
+  navigate("/login");
+};
   return (
     <aside className={`sidebar ${isOpen ? "sidebar--open" : ""}`}>
       <div className="sidebar__brand">
@@ -40,6 +51,10 @@ export default function Sidebar({ isOpen, onClose }) {
           ))}
         </ul>
       </nav>
+      <button className="sidebar__link sidebar__logout" onClick={handleLogout}>
+  <LogOut size={18} />
+  <span>Log out</span>
+</button>
     </aside>
   );
 }

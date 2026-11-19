@@ -50,3 +50,25 @@
   background: var(--bg);
   color: var(--primary);
 }
+
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar__logout {
+  margin-top: auto;
+  width: 100%;
+  background: none;
+  border: 0;
+  font: inherit;
+  font-size: 15px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sidebar__logout:hover {
+  color: var(--danger);
+  background: var(--bg);
+}
