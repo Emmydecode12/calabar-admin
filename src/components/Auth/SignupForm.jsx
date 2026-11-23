@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "../ui";
 import TextField from "./TextField";
 import PasswordField from "./PasswordField";
+import { signup } from "./service";
 import "./Auth.css";
 
 function validate({ name, email, password, confirm }) {
@@ -26,6 +27,10 @@ function validate({ name, email, password, confirm }) {
   if (!confirm) {
     errors.confirm = "Confirm your password";
   } else if (confirm !== password) {
+    errors.confirm = "Passwords do not match";
+  }
+
+  if (password !== confirm) {
     errors.confirm = "Passwords do not match";
   }
 
@@ -55,6 +60,17 @@ export default function SignupForm({ onSuccess }) {
     setErrors(found);
     if (Object.keys(found).length > 0) return;
 
+    // signp
+
+    signup(values.name, values.email, values.password)
+      .then((userData) => {
+        console.log("Signup successful:", userData);
+        onSuccess?.(userData);
+      })
+      .catch((error) => {
+        console.error("Signup error:", error);
+        // Handle signup error (e.g., show a message to the user)
+      });
     setLoading(true);
     setTimeout(() => {
       setLoading(false);

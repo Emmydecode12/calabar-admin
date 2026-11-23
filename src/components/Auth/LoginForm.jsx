@@ -3,6 +3,7 @@ import { Button } from "../ui";
 import TextField from "./TextField";
 import PasswordField from "./PasswordField";
 import "./Auth.css";
+import { login } from "./service";
 
 function validate({ email, password }) {
   const errors = {};
@@ -68,7 +69,7 @@ export default function LoginForm({ onSuccess }) {
         error={errors.password}
       />
 
-      <Button type="submit" size="lg" disabled={loading}>
+      <Button type="submit" size="lg" disabled={loading} onClick={login(values.email, values.password)}>
         {loading ? "Logging in..." : "Log in"}
       </Button>
     </form>
