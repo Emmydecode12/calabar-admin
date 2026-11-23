@@ -26,7 +26,7 @@ export const login = async (email, password) => {
 
 export const signup = async (name, email, password) => {
   try {
-    const response = await fetch(`${config.API_URL}/api/auth/signup`, {
+    const response = await fetch(`${config.API_URL}/api/auth/register`, {
       method: "POST",
       credentials: "include",
       headers: {
