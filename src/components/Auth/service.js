@@ -32,7 +32,7 @@ export const signup = async (name, email, password) => {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ name, email, password })
+      body: JSON.stringify({ fullname: name, email: email, password: password })
     });
 
     if (!response.ok) {
