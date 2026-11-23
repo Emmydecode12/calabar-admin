@@ -8,13 +8,16 @@ import { stats, chartColors } from "../data/mockData";
 import PageHeader from "../components/layout/PageHeader/PageHeader";
 import { Button } from "../components/ui";
 import "./Overview.css";
+import { useAuth } from "../context/AuthContext";
 
 export default function Overview() {
+  const {user, isAuthenticated, loading} = useAuth();
+  console.log("USER: ", user);
   return (
     <>
       <PageHeader
-        title="Platform overview"
-       subtitle="Monitor your properties, listings, users, and platform activity at a glance.."
+        title={`Platform overview [${user?.fullname ?? "ADMIN"}]`}
+        subtitle="Monitor your properties, listings, users, and platform activity at a glance.."
         action={<Button variant="outline">Export report</Button>}
       />
 

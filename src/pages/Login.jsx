@@ -1,11 +1,9 @@
 import { useAuth } from "../context/AuthContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import AuthLayout from "../components/Auth/AuthLayout";
 import LoginForm from "../components/Auth/LoginForm";
 
 export default function Login() {
-  const navigate = useNavigate();
-  const { login } = useAuth();
 
   return (
     <AuthLayout
@@ -17,12 +15,7 @@ export default function Login() {
         </>
       }
     >
-     <LoginForm
-  onSuccess={(values) => {
-    login({ email: values.email });
-    navigate("/");
-  }}
-/>
+      <LoginForm/>
     </AuthLayout>
   );
 }

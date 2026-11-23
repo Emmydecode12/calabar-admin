@@ -2,11 +2,10 @@ import { useAuth } from "../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import AuthLayout from "../components/Auth/AuthLayout";
 import SignupForm from "../components/Auth/SignupForm";
-import { login } from "../components/Auth/service";
 
 export default function Signup() {
   const navigate = useNavigate();
-  const { signup } = useAuth();
+  const { login } = useAuth();
 
   return (
     <AuthLayout
@@ -20,8 +19,7 @@ export default function Signup() {
     >
      <SignupForm
   onSuccess={(values) => {
-    login({ email: values.email, password: values.password });
-    navigate("/");
+    navigate("/login", { replace: true });
   }}
 />
     </AuthLayout>

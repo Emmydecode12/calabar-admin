@@ -3,7 +3,7 @@ import { Button } from "../ui";
 import TextField from "./TextField";
 import PasswordField from "./PasswordField";
 import "./Auth.css";
-import { login } from "./service";
+import { useAuth } from "../../context/AuthContext";
 
 function validate({ email, password }) {
   const errors = {};
@@ -25,6 +25,7 @@ export default function LoginForm({ onSuccess }) {
   const [values, setValues] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,6 +40,10 @@ export default function LoginForm({ onSuccess }) {
     setErrors(found);
     if (Object.keys(found).length > 0) return;
 
+
+    //login
+    login(values.email, values.password);
+    
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -69,7 +74,7 @@ export default function LoginForm({ onSuccess }) {
         error={errors.password}
       />
 
-      <Button type="submit" size="lg" disabled={loading} onClick={login(values.email, values.password)}>
+      <Button type="submit" size="lg" disabled={loading}>
         {loading ? "Logging in..." : "Log in"}
       </Button>
     </form>

@@ -65,7 +65,7 @@ export default function SignupForm({ onSuccess }) {
     signup(values.name, values.email, values.password)
       .then((userData) => {
         console.log("Signup successful:", userData);
-        onSuccess?.(userData);
+        onSuccess?.({ email: values.email, password: values.password });
       })
       .catch((error) => {
         console.error("Signup error:", error);
