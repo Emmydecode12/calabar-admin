@@ -72,3 +72,10 @@
   color: var(--danger);
   background: var(--bg);
 }
+
+
+.sidebar__link.sidebar__link--active {
+  background: var(--primary-soft);
+  color: var(--primary);
+  font-weight: 600;
+}

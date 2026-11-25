@@ -5,9 +5,12 @@ import GuestRoute from "./components/routes/GuestRoute";
 import Overview from "./pages/Overview";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import { AuthProvider } from "./context/AuthContext";
 
 export default function App() {
   return (
+    <AuthProvider>
+
     <Routes>
       <Route element={<GuestRoute />}>
         <Route path="/login" element={<Login />} />
@@ -26,6 +29,7 @@ export default function App() {
       </Route>
 
       <Route path="*" element={<Navigate to="/" replace />} />
-    </Routes>
+    </Routes>     
+    </AuthProvider>
   );
 }

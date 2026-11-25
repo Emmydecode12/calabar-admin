@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import config from "../config";
 import { useNavigate } from "react-router-dom";
 const AuthContext = createContext(null);
@@ -6,11 +6,29 @@ const STORAGE_KEY = "calabar-admin-user";
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
-  const [session, setSession] = useState(null);
+  // const [session, setSession] = useState(null);
   const navigate = useNavigate();
   const [isAuthenticated, setIsAuthenticated] = useState(Boolean(user));
   const [loading, setLoading] = useState(true);
 
+
+    useEffect(() => {
+      const restoreSession = async () => {
+        // immplement logic to restore session from local storage or API
+        const response = await fetch(`${config.API_URL}/api/auth/me`, {
+          method: "GET",
+          credentials: "include"
+        });
+        
+        if (response.ok) {
+          const res = await response.json();
+          setUser(res.user);
+          console.log("INITIAL REFRESH: ", user);
+          setIsAuthenticated(true);
+        }
+      }
+      restoreSession().finally(() => setLoading(false));
+    }, []);
  const signup = async (name, email, password) => {
   try {
     setLoading(true);

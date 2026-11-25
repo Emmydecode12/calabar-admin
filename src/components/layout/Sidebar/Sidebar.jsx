@@ -8,6 +8,7 @@ import {
   MessageSquare,
   Wallet,
   TrendingUp,
+  Settings,
    LogOut,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -21,6 +22,7 @@ const navItems = [
   { label: "Enquiries", icon: MessageSquare },
   { label: "Revenue", icon: Wallet },
   { label: "Analytics", icon: TrendingUp },
+  { label: "Settings", icon: Settings },
 ];
 
 export default function Sidebar({ isOpen, onClose }) {
